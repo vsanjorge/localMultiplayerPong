@@ -9,7 +9,7 @@ screen = pygame.display.set_mode(size)
 width, height = size
 speed = [1, 1]
 bgc = 255, 255, 255
-font = pygame.font.Sysfont("monospace", 26)
+#font = pygame.font.Sysfont("monospace", 26)
 pelota = pygame.image.load("pelota.png")
 pelotaRect = pelota.get_rect()
 palaRoja = pygame.image.load("palaRoja.png")
@@ -28,15 +28,32 @@ palaAzulRect.move_ip(799, 300)
 
 while True:
   pygame.time.delay(1)
+  pelotaRect = pelotaRect.move(speed)
+
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       False
-  if keys[pygame.K_W] and palaRojaRect.top <= 0:
+  if keys[pygame.K_w] and palaRojaRect.top <= 0:
     palaRojaRect = palaRojaRect.move(0, 0)
-  elif keys[pygame.K_W]:
+  elif keys[pygame.K_w]:
     palaRojaRect = palaRojaRect.move(0, -1)
-  if keys[pygame.K_S] and palaRojaRect.bottom >= height:
+  if keys[pygame.K_s] and palaRojaRect.bottom >= height:
     palaRojaRect = palaRojaRect.move(0, 0)
-  elif keys[pygame.K_S]:
+  elif keys[pygame.K_s]:
     palaRojaRect = palaRojaRect.move(0, 1)
-  if palaRojaRect.colliderect(pelotaRect)
+  if palaRojaRect.colliderect(pelotaRect):
+    speed[0] = -speed[0]
+  if palaAzulRect.colliderect(pelotaRect):
+    speed[0] = -speed[0]
+  if pelotaRect.left <= 0 or pelotaRect.right >= width:
+    speed[0] = -speed[0]
+  if pelotaRect.top <= 0 or pelotaRect.bottom >= height:
+    speed[1] = -speed[1]
+  
+  screen.fill(bgc)
+  screen.blit(pelota, pelotaRect)
+  screen.blit(palaRoja, palaRojaRect)
+  screen.blit(palaAzul, palaAzulRect)
+  pygame.display.flip()
+
+pygame.QUIT()
