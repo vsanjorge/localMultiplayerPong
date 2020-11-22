@@ -9,6 +9,7 @@ screen = pygame.display.set_mode(size)
 width, height = size
 speed = [1, 1]
 bgc = 255, 255, 255
+fontControls = pygame.font.SysFont("monospace", 16)
 font = pygame.font.SysFont("monospace", 26)
 fontCount = pygame.font.SysFont("monospace", 42)
 pelota = pygame.image.load("pelota.png")
@@ -21,7 +22,7 @@ divisor = pygame.image.load("divisor.png")
 divisorRect = divisor.get_rect()
 strikesRojo = 0
 strikesAzul = 0
-countdown = 5
+countdown = 10
 run = True
 
 divisorRect.move_ip(400, 0)
@@ -30,14 +31,18 @@ palaAzulRect.move_ip(773, 300)
 
 while countdown > 0:
   count = fontCount.render("{0}".format(countdown), 1, (0,0,0))
+  redControls = fontControls.render("Moves with W and S keys", 1, (0,0,0))
+  blueControls = fontControls.render("Moves with UP and DOWN arrows", 1, (0,0,0))
   screen.fill(bgc)
-  screen.blit(count, (400, 250))
+  screen.blit(redControls, (5, 50))
+  screen.blit(blueControls, (505, 50))
+  screen.blit(count, (388, 250))
   pygame.display.flip()
   pygame.time.wait(1000)
   countdown -= 1
 
 while run:
-  pygame.time.delay(1)
+  pygame.time.delay(2)
   pelotaRect = pelotaRect.move(speed)
   keys = pygame.key.get_pressed()
   strikesRojoDisplay = font.render("Strikes: {0}".format(strikesRojo), 1, (0,0,0))
@@ -90,10 +95,10 @@ while run:
 
 screen.fill(bgc)
 if strikesRojo == 5:
-  screen.blit(winnerAzul, (333, 188))
+  screen.blit(winnerAzul, (333, 250))
   pygame.display.flip()
 elif strikesAzul == 5:
-  screen.blit(winnerRojo, (333, 188))
+  screen.blit(winnerRojo, (333, 250))
   pygame.display.flip()
 pygame.time.wait(5000)
 pygame.QUIT()
