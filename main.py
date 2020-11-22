@@ -20,7 +20,6 @@ divisor = pygame.image.load("divisor.png")
 divisorRect = divisor.get_rect()
 strikesRojo = 0
 strikesAzul = 0
-keys = pygame.key.get_pressed()
 run = True
 
 divisorRect.move_ip(400, 300)
@@ -30,6 +29,7 @@ palaAzulRect.move_ip(799, 300)
 while run:
   pygame.time.delay(1)
   pelotaRect = pelotaRect.move(speed)
+  keys = pygame.key.get_pressed()
 
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
