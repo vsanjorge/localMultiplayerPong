@@ -27,7 +27,7 @@ palaRojaRect.move_ip(1, 300)
 palaAzulRect.move_ip(773, 300)
 
 while run:
-  pygame.time.delay(1)
+  pygame.time.delay(2)
   pelotaRect = pelotaRect.move(speed)
   keys = pygame.key.get_pressed()
   strikesRojoDisplay = font.render("Strikes: {0}".format(strikesRojo), 1, (0,0,0))
@@ -80,10 +80,10 @@ while run:
 
 screen.fill(bgc)
 if strikesRojo == 5:
-  screen.blit(winnerAzul, (350, 188))
+  screen.blit(winnerAzul, (333, 188))
   pygame.display.flip()
 elif strikesAzul == 5:
-  screen.blit(winnerRojo, (350, 188))
+  screen.blit(winnerRojo, (333, 188))
   pygame.display.flip()
 pygame.time.wait(5000)
 pygame.QUIT()
