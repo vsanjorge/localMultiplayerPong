@@ -21,18 +21,19 @@ divisorRect = divisor.get_rect()
 strikesRojo = 0
 strikesAzul = 0
 keys = pygame.key.get_pressed()
+run = True
 
 divisorRect.move_ip(400, 300)
 palaRojaRect.move_ip(1, 300)
 palaAzulRect.move_ip(799, 300)
 
-while True:
+while run:
   pygame.time.delay(1)
   pelotaRect = pelotaRect.move(speed)
 
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
-      False
+      run = False
   if keys[pygame.K_w] and palaRojaRect.top <= 0:
     palaRojaRect = palaRojaRect.move(0, 0)
   elif keys[pygame.K_w]:
