@@ -81,7 +81,7 @@ while run:
       strikesAzul += 1
   if pelotaRect.top <= 0 or pelotaRect.bottom >= height:
     speed[1] = -speed[1]
-  if strikesRojo == 5 or strikesAzul == 5:
+  if strikesRojo == 3 or strikesAzul == 3:
     run = False
       
   screen.fill(bgc)
@@ -94,10 +94,10 @@ while run:
   pygame.display.flip()
 
 screen.fill(bgc)
-if strikesRojo == 5:
+if strikesRojo == 3:
   screen.blit(winnerAzul, (333, 250))
   pygame.display.flip()
-elif strikesAzul == 5:
+elif strikesAzul == 3:
   screen.blit(winnerRojo, (333, 250))
   pygame.display.flip()
 pygame.time.wait(5000)
